@@ -2,7 +2,7 @@
 type: task-plan
 project: project-memory
 workstream: core-app-brand
-status: active
+status: completed
 updated_at: 2026-10-10
 ---
 
