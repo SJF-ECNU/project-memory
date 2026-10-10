@@ -1,8 +1,15 @@
-# project-memory-init
+# Project Memory
 
 一套帮助多个不同代码 Agent 快速同步项目背景、当前进度、关键注意事项和下一步，并把杂乱项目文档整理成可导航关系图谱的初始化 Skill。它在新仓库、项目记忆明显不完整或项目文档缺少结构的仓库中，一次性生成中文、兼容 Obsidian、可跨 Agent 接续的项目记忆和文档关系层。
 
 项目记忆随仓库版本控制，不依赖某个 Agent、模型、客户端或原始对话。无论后续使用 Codex、Claude Code 或其他代码智能体，都可以从同一套记录中快速恢复上下文。初始化完成后，目标项目会获得一个轻量的日常 `project-memory` Skill，负责后续接管、事实刷新和工作收尾。
+
+## 分支定位
+
+- `main` 是 Project Memory 核心分发分支，维护项目记忆协议、初始化与日常 Skill、文档关系层规范和模板。默认安装从此分支获取。
+- [`project-memory-app`](https://github.com/SJF-ECNU/project-memory/tree/project-memory-app) 是桌面应用分支，维护应用界面、智能体运行和项目记忆浏览能力，作为核心协议与模板的消费者。通用协议和模板的修改先进入 `main`，应用按需同步；应用代码不进入核心分发。
+
+项目名称为 **Project Memory**；初始化动作仍使用 `project-memory-init`，日常动作使用 `project-memory`。已有 Skill 调用和安装目录保持兼容。
 
 ## 它解决什么问题
 
@@ -33,7 +40,7 @@
 ## 目录结构
 
 ```text
-project-memory-init/
+project-memory/
 ├── LICENSE                          # MIT License
 ├── SKILL.md                         # Skill 唯一入口
 ├── 安装与使用.md                    # 详细安装和使用说明
@@ -53,13 +60,13 @@ project-memory-init/
 克隆到通用 Skill 目录：
 
 ```bash
-git clone https://github.com/SJF-ECNU/project-memory-init.git ~/.agents/skills/project-memory-init
+git clone --branch main https://github.com/SJF-ECNU/project-memory.git ~/.agents/skills/project-memory-init
 ```
 
 如果客户端只扫描 Codex 专用目录，也可以安装到：
 
 ```bash
-git clone https://github.com/SJF-ECNU/project-memory-init.git ~/.codex/skills/project-memory-init
+git clone --branch main https://github.com/SJF-ECNU/project-memory.git ~/.codex/skills/project-memory-init
 ```
 
 同一客户端环境只保留一个安装位置，避免重复发现。更多说明见 [安装与使用](安装与使用.md)。
@@ -134,7 +141,7 @@ path:"project-memory/" -path:"project-memory/模板/"
 
 Skill 不会默认创建或覆盖 `.obsidian/`，避免破坏用户已有的主题、插件、工作区和图谱偏好；上述设置由使用者在当前 Vault 中应用。
 
-可选的 Obsidian 2D 插件「记忆星图」在 [memory-constellation 分支](https://github.com/SJF-ECNU/project-memory-init/tree/memory-constellation)独立维护。`main` 只保留轻量的 Project Memory Skill、规范和模板，不依赖该插件。
+可选的 Obsidian 2D 插件「记忆星图」在 [memory-constellation 分支](https://github.com/SJF-ECNU/project-memory/tree/memory-constellation)独立维护。`main` 只保留轻量的 Project Memory Skill、规范和模板，不依赖该插件。
 
 ## 查看项目文档图谱
 
