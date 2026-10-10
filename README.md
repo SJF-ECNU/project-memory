@@ -1,8 +1,17 @@
-# 项目工作台 · Project Memory App
+# Project Memory · App
 
 独立于 Obsidian 的本地 Vue + Electron 应用，用于按项目组织、浏览和编辑开发上下文。
 
-这是 **`project-memory-app` 桌面应用分支**。项目记忆初始化 Skill 与模板由 [main 分支](https://github.com/SJF-ECNU/project-memory-init/tree/main)维护；Obsidian 记忆星图位于 [memory-constellation 分支](https://github.com/SJF-ECNU/project-memory-init/tree/memory-constellation)。应用入口与运行命令在 `desktop/`，无需安装 Obsidian。
+这是 **Project Memory 的 `project-memory-app` 桌面应用分支**。项目记忆初始化 Skill 与模板由 [main 分支](https://github.com/SJF-ECNU/project-memory/tree/main)维护；Obsidian 记忆星图位于 [memory-constellation 分支](https://github.com/SJF-ECNU/project-memory/tree/memory-constellation)。应用入口与运行命令在 `desktop/`，无需安装 Obsidian。
+
+## 分支职责
+
+| 分支 | 维护范围 | 使用方式 |
+| --- | --- | --- |
+| `main` | Project Memory 核心协议、任务计划、初始化 Skill 与模板 | 从 main 安装核心 Skill |
+| `project-memory-app` | 本地桌面应用、交互与应用验收 | 从本分支运行 desktop |
+
+本分支根目录的初始化资产是桌面一键初始化的内置依赖，构建会携带这些文件；核心规则的设计与发布入口是 main。更新依赖时从核心来源同步，不在 app 分支另建一套核心协议。
 
 ## 功能
 
@@ -18,7 +27,7 @@
 需要 Node.js 22.12 或更新版本及 npm。
 
 ```bash
-git clone --branch project-memory-app --single-branch https://github.com/SJF-ECNU/project-memory-init.git project-memory-app
+git clone --branch project-memory-app --single-branch https://github.com/SJF-ECNU/project-memory.git project-memory-app
 cd project-memory-app/desktop
 npm ci
 npm run build

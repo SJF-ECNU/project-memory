@@ -127,7 +127,7 @@ onMounted(async () => {
   <div class="workspace">
     <aside class="sidebar">
       <div class="traffic-space"></div>
-      <div class="brand"><span class="brand-symbol"><Layers :size="20" /></span><span>项目工作台<small>把上下文留在项目里</small></span></div>
+      <div class="brand"><span class="brand-symbol"><Layers :size="20" /></span><span>Project Memory<small>把上下文留在项目里</small></span></div>
       <div class="project-picker">
         <FolderOpen :size="18" />
         <select aria-label="切换项目" :value="current?.path || ''" @change="switchProject"><option v-if="!projects.length" value="">选择一个项目</option><option v-for="p in projects" :key="p.path" :value="p.path">{{ p.name }}</option></select>

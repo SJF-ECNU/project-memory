@@ -14,6 +14,10 @@ let app
 try {
   app = await electron.launch({ executablePath: electronPath, args: ['.', `--user-data-dir=${userData}`] })
   const page = await app.firstWindow()
+  assert.equal(await app.evaluate(({ app }) => app.getName()), 'Project Memory')
+  assert.equal(await app.evaluate(({ app }) => app.getPath('userData')), await realpath(userData), 'rebranding preserves the existing project store')
+  assert.equal(await page.title(), 'Project Memory')
+  assert.ok((await page.locator('.brand').innerText()).includes('Project Memory'))
   const settle = () => page.waitForFunction(() => !document.querySelector(".view-enter-active, .view-leave-active, .results-enter-active, .results-leave-active"))
   const errors = []
   page.on('pageerror', error => errors.push(error.message))

@@ -1,4 +1,4 @@
-# 项目工作台 · 桌面端
+# Project Memory · 桌面端
 
 独立于 Obsidian 的 Vue + Electron 本地应用。左侧选择项目和内容分类，中央以瀑布流展示真实 Markdown 和文本文件；卡片显示标题、原始相对路径和正文摘录，卡片下显示文件更新日期。点击阅读正文，返回保留浏览位置。
 
@@ -69,3 +69,7 @@ UI 测试启动真实 Electron，用当前仓库验证浏览，验证 Markdown/�
 ### 本机转发服务排查
 
 若 Claude 反复重试或返回 502，先检查 CC Switch 的请求状态和供应商出站连接。CLI 进程的代理环境不会替另一个已运行的 CC Switch 设置出站代理。应在 CC Switch「设置 → 路由 → 全局出站代理」配置实际可用的本地代理并测试；具体地址取决于本机环境，不由工作台硬编码。该设置影响 CC Switch 的出站请求，不修改系统代理。
+
+## 核心依赖与名称
+
+应用由 `project-memory-app` 分支维护，核心协议和模板的权威来源为 [main](https://github.com/SJF-ECNU/project-memory/tree/main)。构建携带的初始化资产是应用依赖；Project Memory 是展示名称，npm 包标识与原用户数据目录保持兼容。

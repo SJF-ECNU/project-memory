@@ -1,5 +1,6 @@
 {
   "name": "project-content-desktop",
+  "description": "Project Memory desktop application",
   "version": "0.1.0",
   "private": true,
   "type": "module",

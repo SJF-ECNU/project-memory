@@ -1,5 +1,9 @@
 const { app, BrowserWindow, dialog, ipcMain, session } = require('electron');
 const path = require('node:path');
+// Keep the existing project list when changing the displayed application name.
+const userDataPath = app.getPath('userData');
+app.setName('Project Memory');
+app.setPath('userData', userDataPath);
 const fs = require('node:fs/promises');
 const { AgentRunner, detectAgents, active } = require('./agent-runner.cjs');
 const { scanProject, saveFile } = require('./project-files.cjs');
@@ -17,7 +21,7 @@ function trusted(event) {
   if (event.sender !== window?.webContents || event.senderFrame !== window.webContents.mainFrame) throw new Error('无权访问项目');
 }
 async function openWindow() {
-  window = new BrowserWindow({ width: 1380, height: 920, minWidth: 760, minHeight: 560, title: '项目工作台', backgroundColor: '#f8f9fb', titleBarStyle: 'hiddenInset', trafficLightPosition: { x: 20, y: 20 }, webPreferences: { preload: path.join(__dirname, 'preload.cjs'), contextIsolation: true, nodeIntegration: false, sandbox: true } });
+  window = new BrowserWindow({ width: 1380, height: 920, minWidth: 760, minHeight: 560, title: 'Project Memory', backgroundColor: '#f8f9fb', titleBarStyle: 'hiddenInset', trafficLightPosition: { x: 20, y: 20 }, webPreferences: { preload: path.join(__dirname, 'preload.cjs'), contextIsolation: true, nodeIntegration: false, sandbox: true } });
   window.webContents.on('will-prevent-unload', event => {
     const response = dialog.showMessageBoxSync(window, { type: 'question', message: '有未保存的修改，仍要关闭吗？', buttons: ['继续编辑', '放弃修改并关闭'], defaultId: 0, cancelId: 0 });
     if (response === 1) event.preventDefault();
